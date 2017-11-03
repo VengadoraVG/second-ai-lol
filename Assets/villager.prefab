@@ -24,6 +24,10 @@ GameObject:
   - component: {fileID: 23223150008271728}
   - component: {fileID: 114751700703398552}
   - component: {fileID: 195506832248934666}
+  - component: {fileID: 114093464317113028}
+  - component: {fileID: 114798229965097864}
+  - component: {fileID: 114242502854662850}
+  - component: {fileID: 114698585593835470}
   m_Layer: 0
   m_Name: villager
   m_TagString: Untagged
@@ -56,7 +60,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1621420970211834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 281.44, y: 139.01, z: 291.49}
+  m_LocalPosition: {x: 297.44684, y: 139.79594, z: 298.30954}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4931172553570520}
@@ -132,6 +136,48 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114093464317113028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621420970211834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef9881e0c53065c42a7180f910c76aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Peak: {fileID: 0}
+--- !u!114 &114242502854662850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621420970211834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168cb794148fe694bb89cd38dcb6c1e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentTarget: {fileID: 0}
+  AttackCooldown: 1
+  DamagePerHit: 1
+--- !u!114 &114698585593835470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621420970211834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ce831bed06d734d80af845e946f839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThisSurrounder: {fileID: 114751700703398552}
+  ThisEnemyDetector: {fileID: 114894083387430766}
+  NormalBehaviour: {fileID: 114093464317113028}
+  AttackGolemsBehaviour: {fileID: 114798229965097864}
+  AttackDemonBehaviour: {fileID: 114242502854662850}
 --- !u!114 &114751700703398552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,6 +189,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d025a3a79593f3349922cab3783ac1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114798229965097864
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621420970211834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168cb794148fe694bb89cd38dcb6c1e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentTarget: {fileID: 0}
+  AttackCooldown: 1
+  DamagePerHit: 1
 --- !u!114 &114894083387430766
 MonoBehaviour:
   m_ObjectHideFlags: 1

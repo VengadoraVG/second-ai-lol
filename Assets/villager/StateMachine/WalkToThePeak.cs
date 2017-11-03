@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace Villager {
     namespace StateMachine {
-        public class WalkToThePeak : StateMachineBehaviour {
+        public class WalkToThePeak : MonoBehaviour, StateMachineBehaviour {
             public GameObject Peak;
 
             private NavMeshAgent _agent {
@@ -16,11 +16,11 @@ namespace Villager {
             }
             private NavMeshAgent _cachedAgent;
 
-            public override void EnterState () {
+            public void EnterState () {
                 _agent.SetDestination(Peak.transform.position);
             }
 
-            public override void ExitState () {
+            public void ExitState () {
                 _agent.ResetPath();
             }
         }

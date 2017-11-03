@@ -3,21 +3,32 @@ using System.Collections;
 
 namespace Villager {
     namespace StateMachine {
-        public class Attacker : StateMachineBehaviour {
-            public HPCounter CurrentTarget;
+        [RequireComponent(typeof(Charge))]
+        public class Attacker : Machine, StateMachineBehaviour {
             public float AttackCooldown = 1;
             public float DamagePerHit = 1;
 
-            public void SetTarget (HPCounter target) {
-                CurrentTarget = target;
+            public Spot CurrentSpot;
+            public HPCounter CurrentTarget;
+            
+            public Charge ChargeBehaviour;
+
+            public void EnterState () {
+                if (ChargeBehaviour == null) 
+                    ChargeBehaviour = GetComponent<Charge>();
+
+                // StartCoroutine(Attack());
+                ChargeBehaviour.Owner = this;
+                ChargeBehaviour.EnterState();
             }
 
-            public override void EnterState () {
-                StartCoroutine(Attack());
+            public void ExitState () {
+                ChargeBehaviour.ExitState();
             }
 
-            public override void ExitState () {
-                StopAllCoroutines();
+            public void SetTarget (Spot target) {
+                CurrentSpot = target;
+                CurrentTarget = target.Owner.GetComponent<HPCounter>();
             }
 
             public IEnumerator Attack () {

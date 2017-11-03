@@ -5,15 +5,23 @@ using System.Collections.Generic;
 
 namespace Villager {
     public class EnemyDetector : MonoBehaviour {
+        public delegate void EnemyDetectedDelegate (GameObject detected);
+        public event EnemyDetectedDelegate OnEnemyDetected;
+
+        public delegate void EnemyLostDelegate (GameObject lost);
+        public event EnemyLostDelegate OnEnemyLost;
+
         public Dictionary<int, GameObject> EnemiesInRange =
             new Dictionary<int, GameObject>();
 
         void OnTriggerEnter (Collider c) {
             EnemiesInRange[c.GetInstanceID()] = c.gameObject;
+            if (OnEnemyDetected != null) OnEnemyDetected(c.gameObject);
         }
 
         void OnTriggerExit (Collider c) {
             EnemiesInRange.Remove(c.GetInstanceID());
+            if (OnEnemyLost != null) OnEnemyLost(c.gameObject);
         }
 
         public List<GameObject> SortedEnemies () {
