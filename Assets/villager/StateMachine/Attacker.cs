@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 using System.Collections;
 
 namespace Villager {
@@ -13,17 +14,38 @@ namespace Villager {
             
             public Charge ChargeBehaviour;
 
+            private NavMeshAgent _agent;
+            private Coroutine _attackingCoroutine;
+
+            void Start () {
+                _agent = GetComponent<NavMeshAgent>();
+            }
+
+            void Update () {
+                if (_attackingCoroutine == null &&
+                    Util.Distance(_agent.path) < 0.5f) {
+                    StartAttacking();
+                } else if (_attackingCoroutine != null &&
+                           Util.Distance(_agent.path) > 1) {
+                    StopCoroutine(_attackingCoroutine);
+                }
+            }
+
             public void EnterState () {
                 if (ChargeBehaviour == null) 
                     ChargeBehaviour = GetComponent<Charge>();
 
-                // StartCoroutine(Attack());
                 ChargeBehaviour.Owner = this;
                 ChargeBehaviour.EnterState();
             }
 
             public void ExitState () {
                 ChargeBehaviour.ExitState();
+                StopCoroutine(_attackingCoroutine);
+            }
+
+            public void StartAttacking () {
+                _attackingCoroutine = StartCoroutine(Attack());
             }
 
             public void SetTarget (Spot target) {

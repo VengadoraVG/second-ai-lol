@@ -9,6 +9,12 @@ namespace Villager {
         public float TotalHP;
         public float DamageTaken;
 
+        public float HPLeft {
+            get {
+                return TotalHP - DamageTaken;
+            }
+        }
+
         public bool IsDeath {
             get {
                 return TotalHP <= DamageTaken;

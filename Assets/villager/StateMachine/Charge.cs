@@ -17,7 +17,9 @@ namespace Villager {
             void Update () {
                 if (_isActive) {
                     _agent.SetDestination(Owner.CurrentSpot.Position);
-                    transform.forward = transform.position - Owner.CurrentSpot.Owner.transform.position;
+                    transform.forward =
+                        Owner.CurrentSpot.Owner.transform.position -
+                        transform.position;
                 }
             }
 
