@@ -14,20 +14,31 @@ namespace Villager {
             
             public Charge ChargeBehaviour;
 
+            public delegate void StartAttackingDelegate ();
+            public event StartAttackingDelegate OnStartAttacking;
+
             private NavMeshAgent _agent;
             private Coroutine _attackingCoroutine;
+            private bool _isActive = false;
 
             void Start () {
                 _agent = GetComponent<NavMeshAgent>();
+                _attackingCoroutine = null;
             }
 
             void Update () {
-                if (_attackingCoroutine == null &&
-                    Util.Distance(_agent.path) < 0.5f) {
-                    StartAttacking();
-                } else if (_attackingCoroutine != null &&
-                           Util.Distance(_agent.path) > 1) {
-                    StopCoroutine(_attackingCoroutine);
+                if (_isActive) {
+                    if (_attackingCoroutine == null &&
+                        CurrentTarget != null &&
+                        Util.Distance(_agent.path) < 2) {
+                        StartAttacking();
+                        GetComponent<TestIndicator>().Indicate(Color.red, true);
+                    } else if (_attackingCoroutine != null &&
+                               Util.Distance(_agent.path) >= 2) {
+                        GetComponent<TestIndicator>().Indicate(Color.blue, true);
+                        StopCoroutine(_attackingCoroutine);
+                        _attackingCoroutine = null;
+                    }
                 }
             }
 
@@ -37,14 +48,17 @@ namespace Villager {
 
                 ChargeBehaviour.Owner = this;
                 ChargeBehaviour.EnterState();
+                _isActive = true;
             }
 
             public void ExitState () {
                 ChargeBehaviour.ExitState();
                 StopCoroutine(_attackingCoroutine);
+                _isActive = false;
             }
 
             public void StartAttacking () {
+                if (OnStartAttacking != null) OnStartAttacking();
                 _attackingCoroutine = StartCoroutine(Attack());
             }
 

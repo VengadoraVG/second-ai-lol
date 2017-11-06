@@ -5,19 +5,17 @@ using System.Collections;
 namespace Villager {
     namespace StateMachine {
         public class WalkToThePeak : MonoBehaviour, StateMachineBehaviour {
-            public GameObject Peak;
+            protected GameObject _peak;
+            protected NavMeshAgent _agent;
 
-            private NavMeshAgent _agent {
-                get {
-                    if (_cachedAgent == null)
-                        _cachedAgent = GetComponent<NavMeshAgent>();
-                    return _cachedAgent;
-                }
+            protected void Start () {
+                _peak = GameObject.FindWithTag(Tags.Peak);
+                _agent = GetComponent<NavMeshAgent>();
             }
-            private NavMeshAgent _cachedAgent;
 
             public void EnterState () {
-                _agent.SetDestination(Peak.transform.position);
+                Start();
+                _agent.SetDestination(_peak.transform.position);
             }
 
             public void ExitState () {

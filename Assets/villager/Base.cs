@@ -9,6 +9,9 @@ namespace Villager {
         public delegate void SpotFreedDelegate (Spot spot, Surrounder released);
         public event SpotFreedDelegate OnSpotFreed;
 
+        public delegate void SpotTakenDelegate (Spot spot, Surrounder taker);
+        public event SpotTakenDelegate OnSpotTaken;
+
         void Start () {
             Spots = new Spot[(int) ((Mathf.PI * Radius) / Surrounder.Radius)];
             for (int i=0; i<Spots.Length; i++) {
@@ -43,12 +46,14 @@ namespace Villager {
                 int index = (closest + i) % Spots.Length;
                 if (!Spots[index].IsOccupied) {
                     Spots[index].SetOccupier(surrounder);
+                    if (OnSpotTaken != null) OnSpotTaken(Spots[index], surrounder);
                     return Spots[index];
                 }
 
                 index = ((closest -i) + Spots.Length) % Spots.Length;
                 if (!Spots[index].IsOccupied) {
                     Spots[index].SetOccupier(surrounder);
+                    if (OnSpotTaken != null) OnSpotTaken(Spots[index], surrounder);
                     return Spots[index];
                 }
             }

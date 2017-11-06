@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 114698585593835470}
   - component: {fileID: 114375214188578480}
   - component: {fileID: 114954406462016144}
+  - component: {fileID: 114465500955125348}
   m_Layer: 0
   m_Name: villager
   m_TagString: Untagged
@@ -191,7 +192,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1621420970211834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 280.76987, y: 112.136795, z: 343.47623}
+  m_LocalPosition: {x: 108.92059, y: 21.970078, z: 235.21968}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4931172553570520}
@@ -470,7 +471,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9881e0c53065c42a7180f910c76aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Peak: {fileID: 0}
 --- !u!114 &114242502854662850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -502,6 +502,18 @@ MonoBehaviour:
   sphereColor: {r: 0.15862082, g: 1, b: 0, a: 1}
   distance: 0
   cornersLength: 0
+--- !u!114 &114465500955125348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621420970211834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3fbd26668edbac40a01aae0bd56e165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0.5
 --- !u!114 &114698585593835470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -647,9 +659,9 @@ NavMeshAgent:
   m_GameObject: {fileID: 1621420970211834}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 10
-  m_Acceleration: 8
+  m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 600
   m_StoppingDistance: 0
