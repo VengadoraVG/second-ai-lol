@@ -4,11 +4,11 @@ using System.Collections;
 namespace Villager {
     namespace StateMachine {
         public class TemporalGollemController : MonoBehaviour {
-            private DontWalkToThePeak _behaviour;
+            private FleeFromThePeak _behaviour;
             private Base _base;
 
             void Start () {
-                _behaviour = GetComponent<DontWalkToThePeak>();
+                _behaviour = GetComponent<FleeFromThePeak>();
                 _behaviour.EnterState();
                 _base = GetComponent<Base>();
                 _base.OnSpotTaken += WaitForAttack;

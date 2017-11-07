@@ -4,11 +4,8 @@ using System.Collections;
 
 namespace Villager {
     namespace StateMachine {
-        public class DontWalkToThePeak : WalkToThePeak {
-            void Update () {
-            }
-
-            public void EnterState () {
+        public class FleeFromThePeak : WalkToThePeak {
+            public new void EnterState () {
                 Start();
                 NavMeshHit hit;
                 NavMesh.Raycast(transform.position, transform.position +
