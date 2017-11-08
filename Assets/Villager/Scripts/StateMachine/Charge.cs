@@ -24,8 +24,13 @@ namespace Villager {
             }
 
             public void EnterState () {
-                _agent.SetDestination(Owner.CurrentSpot.Position);
-                _isActive = true;
+                if (Owner.CurrentSpot != null) {
+                    _agent.SetDestination(Owner.CurrentSpot.Position);
+                    _isActive = true;
+                } else {
+                    Owner.StopAllCoroutines();
+                    ExitState();
+                }
             }
 
             public void ExitState () {

@@ -54,7 +54,7 @@ namespace Villager {
             public void ExitState () {
                 ChargeBehaviour.ExitState();
                 CurrentSpot.Owner.ReleaseSpot(CurrentSpot); // :'v
-                StopCoroutine(_attackingCoroutine);
+                StopAllCoroutines();
                 _isActive = false;
             }
 

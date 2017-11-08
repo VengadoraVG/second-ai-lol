@@ -10,7 +10,6 @@ namespace Villager {
             private TemporalGollemAttack _attacker;
 
             private Base _base;
-            public int _attackers;
 
             void Start () {
                 _move = GetComponent<FleeFromThePeak>();
@@ -28,15 +27,13 @@ namespace Villager {
             }
 
             public void StopMoving () {
-                _attackers++;
                 if (_currentBehaviour != _attacker) {
                     SwitchToState(_attacker);
                 }
             }
 
             public void SpotReleasedHandler (Spot spot, Surrounder released) {
-                _attackers--;
-                if (_attackers <= 0) {
+                if (_base.OccupiedSpots == 0) {
                     KeepMoving();
                 }
             }

@@ -6,6 +6,18 @@ namespace Villager {
         public float Radius = 3;
         public Spot[] Spots;
 
+        public int OccupiedSpots {
+            get {
+                int c = 0;
+                for (int i=0; i<Spots.Length; i++) {
+                    if (Spots[i].IsOccupied)
+                        c++;
+                }
+
+                return c;
+            }
+        }
+
         public delegate void SpotFreedDelegate (Spot spot, Surrounder released);
         public event SpotFreedDelegate OnSpotFreed;
 

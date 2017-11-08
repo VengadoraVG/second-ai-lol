@@ -6,6 +6,7 @@ namespace Villager {
 
         public class Machine : MonoBehaviour {
             protected StateMachineBehaviour _currentBehaviour;
+            public string current;
 
             public void SwitchToState<T> (T behaviour) where T: StateMachineBehaviour {
                 if (_currentBehaviour != null) {

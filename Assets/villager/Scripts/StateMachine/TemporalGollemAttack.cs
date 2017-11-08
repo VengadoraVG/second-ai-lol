@@ -16,12 +16,12 @@ namespace Villager {
             }
 
             public void EnterState () {
-
+                StopAllCoroutines();
                 _attackCoroutine = StartCoroutine(Attack());
             }
 
             public void ExitState () {
-                StopCoroutine(_attackCoroutine);
+                StopAllCoroutines();
             }
 
             public IEnumerator Attack () {
