@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 65659309071653218}
   - component: {fileID: 114345829638677894}
   - component: {fileID: 114861538018126260}
+  - component: {fileID: 114513982959213172}
   m_Layer: 9
   m_Name: golem
   m_TagString: Untagged
@@ -74,7 +75,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1657902895510184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 157.08142, y: 44.44748, z: 87.836586}
+  m_LocalPosition: {x: -5.2, y: -0.017069513, z: -14.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4352059085914014}
@@ -263,6 +264,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TotalHP: 50
   DamageTaken: 0
+--- !u!114 &114513982959213172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1657902895510184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c209ad2eed21f34f8cff9f0bfa27fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cooldown: 2
+  Damage: 3
 --- !u!114 &114861538018126260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -274,6 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737c4998b02680e49a01821489a31799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackers: 0
 --- !u!195 &195385518457791684
 NavMeshAgent:
   m_ObjectHideFlags: 1

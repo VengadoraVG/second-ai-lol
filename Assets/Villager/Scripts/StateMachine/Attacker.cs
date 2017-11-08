@@ -53,6 +53,7 @@ namespace Villager {
 
             public void ExitState () {
                 ChargeBehaviour.ExitState();
+                CurrentSpot.Owner.ReleaseSpot(CurrentSpot); // :'v
                 StopCoroutine(_attackingCoroutine);
                 _isActive = false;
             }
@@ -70,7 +71,7 @@ namespace Villager {
             public IEnumerator Attack () {
                 yield return new WaitForSeconds(AttackCooldown);
                 CurrentTarget.TakeDamage(DamagePerHit);
-                StartCoroutine(Attack());
+                _attackingCoroutine = StartCoroutine(Attack());
             }
         }
     }

@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Villager {
     public class HPCounter : MonoBehaviour {
-        public delegate void DeathDelegate (HPCounter caller);
+        public delegate void DeathDelegate ();
         public event DeathDelegate OnDeath;
 
         public float TotalHP;
@@ -25,7 +25,7 @@ namespace Villager {
             DamageTaken += amount;
 
             if (IsDeath && OnDeath != null) {
-                OnDeath(this);
+                OnDeath();
             }
         }
     }

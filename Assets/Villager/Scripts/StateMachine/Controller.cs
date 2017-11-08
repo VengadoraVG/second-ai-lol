@@ -12,10 +12,21 @@ namespace Villager {
             public WalkToThePeak NormalBehaviour;
             public Attacker AttackGolemsBehaviour;
             public Attacker AttackDemonBehaviour;
+            public Die DieBehaviour;
+            public string asdf;
+
+            private HPCounter _hp;
 
             void Start () {
+                DieBehaviour = GetComponent<Die>();
                 ThisEnemyDetector.OnEnemyDetected += EnemyDetectedHandler;
                 SwitchToState(NormalBehaviour);
+                _hp = GetComponent<HPCounter>();
+                _hp.OnDeath += Die;
+            }
+
+            public void Die () {
+                SwitchToState(DieBehaviour);
             }
 
             public void EnemyLostHandler (GameObject lost) {
@@ -46,6 +57,11 @@ namespace Villager {
                         spot.Owner.GetComponent<HPCounter>();
                     SwitchToState(AttackGolemsBehaviour);
                 }
+            }
+
+            public new void SwitchToState<T> (T behaviour) where T: StateMachineBehaviour {
+                if (_currentBehaviour != DieBehaviour)
+                    base.SwitchToState(behaviour);
             }
         }
     }
